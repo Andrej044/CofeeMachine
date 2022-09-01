@@ -3,14 +3,14 @@
 // You will need this in the following stages
 
 const input = require('sync-input');
-
-
-
-
 const commands = ["buy","fill","take"];
-
-
-
+const config ={
+    water : 400,
+    milk: 540,
+    coffeeBeans: 120,
+    cups: 9,
+    money: 550
+} 
 
 
 
