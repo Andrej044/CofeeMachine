@@ -13,6 +13,27 @@ const config ={
 } 
 
 
+function runCoffeMachine(){    
+    console.log(`The coffee machine has:
+    ${config.water} ml of water
+    ${config.milk} ml of milk
+    ${config.coffeeBeans} g of coffee beans
+    ${config.cups} disposable cups
+    $${config.money} of money 
+ `)
+    
+
+   
+    console.log(`The coffee machine has:
+    ${config.water} ml of water
+    ${config.milk} ml of milk
+    ${config.coffeeBeans} g of coffee beans
+    ${config.cups} disposable cups
+    $${config.money} of money 
+ `)
+}
+
+runCoffeMachine()
 
 // ===============================================================================
 
