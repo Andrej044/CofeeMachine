@@ -84,7 +84,8 @@ let fillCoffeeMachine = () => {
 }
 
 let takeMoney = () => {
-
+    console.log(`I gave you ${config.money}$`);
+    config.money=0;
 }
 
 function runCoffeMachine(){    
@@ -103,10 +104,8 @@ function runCoffeMachine(){
                 break;
             case "fill":
                 fillCoffeeMachine();
-                console.log("fill");
             case "take":
                 takeMoney();
-                console.log("take");
             default:
                 break;
         }
