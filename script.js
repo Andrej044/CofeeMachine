@@ -12,6 +12,15 @@ const config ={
     money: 550
 } 
 
+let buyCoffee = () => {
+
+}
+let fillCoffeeMachine = () => {
+
+}
+let takeMoney = () => {
+    
+}
 
 function runCoffeMachine(){    
     console.log(`The coffee machine has:
@@ -21,7 +30,22 @@ function runCoffeMachine(){
     ${config.cups} disposable cups
     $${config.money} of money 
  `)
-    
+    const choice = input(`Write action (buy, fill, take)`);
+        
+    switch (choice) {
+            case "buy":
+                buyCoffee();
+                console.log("buy");
+                break;
+            case "fill":
+                fillCoffeeMachine();
+                console.log("fill");
+            case "take":
+                takeMoney();
+                console.log("take");
+            default:
+                break;
+        }
 
    
     console.log(`The coffee machine has:
@@ -32,6 +56,7 @@ function runCoffeMachine(){
     $${config.money} of money 
  `)
 }
+
 
 runCoffeMachine()
 
