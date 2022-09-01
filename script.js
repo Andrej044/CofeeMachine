@@ -5,7 +5,7 @@
 const input = require('sync-input');
 const commands = ["buy","fill","take"];
 const config ={
-    water : 400,
+    water: 400,
     milk: 540,
     coffeeBeans: 120,
     cups: 9,
@@ -13,13 +13,35 @@ const config ={
 } 
 
 let buyCoffee = () => {
+    const recipeOfCappuccino = {
+        water: 400,
+        milk: 100,
+        coffeeBeans: 12,
+        money: 6
+    }
+    const recipeOfEspresso = {
+        water: 250,
+        coffeeBeans: 16,
+        money: 4
+    }
+    const recipeOfLatte = {
+        water: 350,
+        milk: 75,
+        coffeeBeans: 20,
+        money: 7
+    }
+
+
+    const byuAnswer = input(`What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:`);
+
+
 
 }
 let fillCoffeeMachine = () => {
 
 }
 let takeMoney = () => {
-    
+
 }
 
 function runCoffeMachine(){    
@@ -30,7 +52,7 @@ function runCoffeMachine(){
     ${config.cups} disposable cups
     $${config.money} of money 
  `)
-    const choice = input(`Write action (buy, fill, take)`);
+    const choice = input(`Write action (buy, fill, take):`);
         
     switch (choice) {
             case "buy":
