@@ -3,7 +3,6 @@
 // You will need this in the following stages
 
 const input = require('sync-input');
-const commands = ["buy","fill","take"];
 const config ={
     water: 400,
     milk: 540,
@@ -63,8 +62,27 @@ let buyCoffee = () => {
 
 }
 let fillCoffeeMachine = () => {
-
+    for (const key in config) {
+        let answer;
+        switch (key) {
+            case "coffeeBeans":
+                answer = input(`Write how many grams of coffee beans you want to add:`)*1;
+                config.coffeeBeans = config.coffeeBeans + answer;      
+                break;
+            case "cups":
+                answer = input(`Write how many disposable coffee cups you want to add:`)*1;
+                config.cups = config.cups + answer;
+                break;
+            case "money":
+                break;
+            default:
+                answer = input(`Write how many ml of ${key} you want to add:`)*1;
+                config[key] = config[key] + answer;
+                break;
+        }
+    }
 }
+
 let takeMoney = () => {
 
 }
@@ -82,7 +100,6 @@ function runCoffeMachine(){
     switch (choice) {
             case "buy":
                 buyCoffee();
-                console.log("buy");
                 break;
             case "fill":
                 fillCoffeeMachine();
