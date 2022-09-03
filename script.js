@@ -1,6 +1,6 @@
 
 const input = require('sync-input');
-const config ={
+const stateResources ={
     water: 400,
     milk: 540,
     coffeeBeans: 120,
@@ -10,16 +10,39 @@ const config ={
 
 
 function calculate(obj={}){
- config.cups-- ; 
+ let showMesage =true;   
  let keysArr = Object.keys(obj)   
     for( let i = 0; i < keysArr.length; i++){
-        for (const key of Object.keys(config)) {
-            if(keysArr[i] === key){
-                if(key === "money") {
-                    config[key] = config[key] + obj[keysArr[i]];
+        for (const stateKey of Object.keys(stateResources)) {
+            
+            for(let j=0; j<keysArr.length; j++){
+                if(!showMesage || keysArr[j] === "money" ) continue;
+                if(stateResources[keysArr[j]] < obj[keysArr[j]]){
+                    console.log(`Sorry, not enough ${keysArr[j]}`);
+                    return;                    
+                } else if(stateResources.cups === 0) {
+                    console.log(`Sorry, not enough cups`);
                     return;
                 }
-                config[key] = config[key] - obj[keysArr[i]];
+            }
+
+            if(keysArr[i] === stateKey){
+                if(stateResources[stateKey] < obj[keysArr[i]] && stateKey != "money") {
+                    // console.log(`Sorry, not enough ${stateKey}`);
+                    return;
+                }
+                else {
+                    if(stateKey === "money") {
+                        stateResources[stateKey] = stateResources[stateKey] + obj[keysArr[i]];
+                        return;
+                    }
+                    if(showMesage){
+                        showMesage=!showMesage;
+                        stateResources.cups-- ; 
+                        console.log(`I have enough resources, making you a coffee!`);
+                    }
+                    stateResources[stateKey] = stateResources[stateKey] - obj[keysArr[i]];
+                }
             }
         }
     }
@@ -45,7 +68,7 @@ let buyCoffee = () => {
     }
 
 
-    const buyAnswer = input(`What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back:`);
+    const buyAnswer = input(`What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:\n`);
 
     switch (buyAnswer) {
         case "1":
@@ -65,45 +88,45 @@ let buyCoffee = () => {
 
 }
 let fillCoffeeMachine = () => {
-    for (const key in config) {
+    for (const key in stateResources) {
         let answer;
         switch (key) {
             case "coffeeBeans":
-                answer = input(`Write how many grams of coffee beans you want to add:`)*1;
-                config.coffeeBeans = config.coffeeBeans + answer;      
+                answer = input(`Write how many grams of coffee beans you want to add:\n`)*1;
+                stateResources.coffeeBeans = stateResources.coffeeBeans + answer;      
                 break;
             case "cups":
-                answer = input(`Write how many disposable coffee cups you want to add:`)*1;
-                config.cups = config.cups + answer;
+                answer = input(`Write how many disposable coffee cups you want to add:\n`)*1;
+                stateResources.cups = stateResources.cups + answer;
                 break;
             case "money":
                 break;
             default:
-                answer = input(`Write how many ml of ${key} you want to add:`)*1;
-                config[key] = config[key] + answer;
+                answer = input(`Write how many ml of ${key} you want to add:\n`)*1;
+                stateResources[key] = stateResources[key] + answer;
                 break;
         }
     }
 }
 
 let takeMoney = () => {
-    console.log(`I gave you ${config.money}$`);
-    config.money=0;
+    console.log(`I gave you ${stateResources.money}$`);
+    stateResources.money=0;
 }
 let remainingResource = () =>{
     console.log(`The coffee machine has:
-    ${config.water} ml of water
-    ${config.milk} ml of milk
-    ${config.coffeeBeans} g of coffee beans
-    ${config.cups} disposable cups
-    $${config.money} of money 
+    ${stateResources.water} ml of water
+    ${stateResources.milk} ml of milk
+    ${stateResources.coffeeBeans} g of coffee beans
+    ${stateResources.cups} disposable cups
+    $${stateResources.money} of money 
  `)
 
 }
 
 function runCoffeMachine(){    
 
-    const choice = input(`Write action (buy, fill, take, remaining, exit):`);
+    const choice = input(`Write action (buy, fill, take, remaining, exit):\n`);
     switch (choice) {
             case "exit":
                 // coffee machine will be always running 
