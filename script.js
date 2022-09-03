@@ -45,18 +45,20 @@ let buyCoffee = () => {
     }
 
 
-    const buyAnswer = input(`What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:`)*1;
+    const buyAnswer = input(`What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back:`);
 
     switch (buyAnswer) {
-        case 1:
+        case "1":
             calculate(recipeOfEspresso);
             break;
-        case 2:
+        case "2":
             calculate(recipeOfLatte);
             break;
-        case 3:
+        case "3":
             calculate(recipeOfCappuccino);
             break;
+        case "back":
+            return;
         default:
             break;
     }
@@ -104,7 +106,9 @@ function runCoffeMachine(){
     const choice = input(`Write action (buy, fill, take, remaining, exit):`);
     switch (choice) {
             case "exit":
-                return;
+                // coffee machine will be always running 
+                //  if users want to turn off the coffee machine, they should type in exit
+                return;  
             case "buy":
                 buyCoffee();
                 break;
