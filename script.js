@@ -88,8 +88,7 @@ let takeMoney = () => {
     console.log(`I gave you ${config.money}$`);
     config.money=0;
 }
-
-function runCoffeMachine(){    
+let remainingResource = () =>{
     console.log(`The coffee machine has:
     ${config.water} ml of water
     ${config.milk} ml of milk
@@ -97,7 +96,12 @@ function runCoffeMachine(){
     ${config.cups} disposable cups
     $${config.money} of money 
  `)
-    const choice = input(`Write action (buy, fill, take):`);
+
+}
+
+function runCoffeMachine(){    
+
+    const choice = input(`Write action (buy, fill, take, remaining, exit):`);
         
     switch (choice) {
             case "buy":
@@ -109,18 +113,13 @@ function runCoffeMachine(){
             case "take":
                 takeMoney();
                 break;
+            case "remaining":
+                remainingResource();
+                break;
             default:
                 break;
         }
 
-   
-    console.log(`The coffee machine has:
-    ${config.water} ml of water
-    ${config.milk} ml of milk
-    ${config.coffeeBeans} g of coffee beans
-    ${config.cups} disposable cups
-    $${config.money} of money 
- `)
 }
 
 
