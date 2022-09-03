@@ -102,8 +102,9 @@ let remainingResource = () =>{
 function runCoffeMachine(){    
 
     const choice = input(`Write action (buy, fill, take, remaining, exit):`);
-        
     switch (choice) {
+            case "exit":
+                return;
             case "buy":
                 buyCoffee();
                 break;
@@ -119,6 +120,7 @@ function runCoffeMachine(){
             default:
                 break;
         }
+        runCoffeMachine()
 
 }
 
